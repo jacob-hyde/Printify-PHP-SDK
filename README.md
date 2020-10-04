@@ -7,7 +7,7 @@ API endpoint documentation can be found here: <https://developers.printify.com/>
 
 ## Installation
 ----
-Using composer, run `composer require jacob-hyde/printify-php-sdk`
+Using composer, run `composer require jacob-hyde/printify`
 Check out **example** and **test** directories for more specific usage examples.
 
 ### Basic Usage
