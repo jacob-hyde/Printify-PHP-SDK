@@ -19,7 +19,7 @@ class PrintifyOrders extends PrintifyBaseEndpoint
         $this->shop_id = $shop_id;
     }
 
-    public function all(array $query_options = []): array
+    public function all(array $query_options = []): Collection
     {
         if (empty($query_options) || !array_key_exists('limit', $query_options)) {
             $query_options['limit'] = 10;

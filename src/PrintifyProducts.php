@@ -19,27 +19,14 @@ class PrintifyProducts extends PrintifyBaseEndpoint
         $this->shop_id = $shop_id;
     }
 
-    public function all(array $query_options = []): array
+    public function all(array $query_options = []): Collection
     {
         if (empty($query_options) || !array_key_exists('limit', $query_options)) {
             $query_options['limit'] = 100;
         }
         $query = PrintifyApiClient::formatQuery($query_options);
         $uri = 'shops/'.$this->shop_id.'/products.json';
-        $response = $this->_api_client->doRequest($uri.$query);
-        if ($response['last_page'] > 1) {
-            $urls = [];
-            for ($i = 2; $i <= $response['last_page']; $i++) {
-                $urls[] = $uri.'?page='.$i.'&limit=100';
-            }
-            $rest_pages_data = $this->_api_client->doMultipleGetRequests($urls);
-            $items = [$response['data']];
-            foreach ($rest_pages_data as $data) {
-                $items[] = $data;
-            }
-        } else {
-            $items = $response['data'];
-        }
+        $items = $this->_api_client->doRequest($uri.$query);
         return $this->collectStructure($items);
     }
 

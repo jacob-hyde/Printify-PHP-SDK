@@ -2,6 +2,7 @@
 
 namespace Printify\Tests;
 
+use Printify\Collection;
 use Printify\PrintifyShop;
 use Printify\Structures\Shop;
 use Printify\Tests\TestCase;
@@ -19,7 +20,7 @@ class ShopTest extends TestCase
     public function testShopsAll()
     {
         $shops = $this->printify_shop->all();
-        $this->assertTrue(is_array($shops));
+        $this->assertInstanceOf(Collection::class, $shops);
         $this->assertCount(1, $shops);
         $shop = $shops[0];
         $this->assertInstanceOf(Shop::class, $shop);

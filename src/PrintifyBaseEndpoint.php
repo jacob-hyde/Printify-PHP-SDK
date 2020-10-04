@@ -34,7 +34,7 @@ abstract class PrintifyBaseEndpoint
      * @param array $query_options - URI Query options
      * @return array - Structured Items in an array
      */
-    abstract public function all(array $query_options = []): array;
+    abstract public function all(array $query_options = []): Collection;
 
     /**
      * Creates a collection of a given endpoint structure
@@ -43,12 +43,20 @@ abstract class PrintifyBaseEndpoint
      * @param \Printify\Structures\* $structure - Use a different structure than the structure property
      * @return array
      */
-    protected function collectStructure(array $items, $structure = null): array
+    protected function collectStructure(array $items, $structure = null): Collection
     {
         if (!$structure) {
             $structure = $this->_structure;
         }
-        $collection = [];
+        $collection = new Collection();
+        if (isset($items['data'])) {
+            $collection->current_page = $items['current_page'];
+            $collection->to = $items['to'];
+            $collection->from = $items['from'];
+            $collection->last_page = $items['last_page'];
+            $collection->total = $items['total'];
+            $items = $items['data'];
+        }
         foreach ($items as $item) {
             $collection[] = new $structure($item);
         }

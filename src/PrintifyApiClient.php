@@ -63,22 +63,6 @@ class PrintifyApiClient
         return $this->response;
     }
 
-    public function doMultipleGetRequests(array $urls): array
-    {
-        $requests = [];
-        foreach ($urls as $url) {
-            $requests[] = new Request('GET', $url);
-        }
-        $responses = Pool::batch($this->client, $requests, [
-            'concurrency' => 15
-        ]);
-        $data = [];
-        foreach ($responses as $response) {
-            $data[] = json_decode($response->getBody()->getContents())->data;
-        }
-        return $data;
-    }
-
     public function formatRequest(string $uri, string $method, array $params = [], array $json = [])
     {
         $options = [];

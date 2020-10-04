@@ -7,7 +7,7 @@ class PrintifyImage extends PrintifyBaseEndpoint
 {
     protected $_structure = Image::class;
 
-    public function all(array $query_options = []): array
+    public function all(array $query_options = []): Collection
     {
         if (empty($query_options) || !array_key_exists('limit', $query_options)) {
             $query_options['limit'] = 100;

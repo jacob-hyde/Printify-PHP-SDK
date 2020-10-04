@@ -2,6 +2,7 @@
 
 namespace Printify\Tests;
 
+use Printify\Collection;
 use Printify\PrintifyCatalog;
 use Printify\Structures\Catalog\Blueprint;
 use Printify\Structures\Catalog\PrintProvider;
@@ -25,7 +26,7 @@ class CatalogTest extends TestCase
     public function testCatalogAll()
     {
         $catalog = $this->printify_catalog->all();
-        $this->assertTrue(is_array($catalog));
+        $this->assertInstanceOf(Collection::class, $catalog);
         $this->assertTrue((count($catalog) > 0));
         $blueprint = $catalog[0];
         $this->assertInstanceOf(Blueprint::class, $blueprint);
@@ -58,7 +59,7 @@ class CatalogTest extends TestCase
     public function testBlueprintPrintProvider()
     {
         $print_providers = $this->printify_catalog->print_providers(self::CATALOG_ITEM_ID);
-        $this->assertTrue(is_array($print_providers));
+        $this->assertInstanceOf(Collection::class, $print_providers);
         $this->assertTrue((count($print_providers) > 0));
         $provider = $print_providers[0];
         $this->assertInstanceOf(PrintProvider::class, $provider);
@@ -72,7 +73,7 @@ class CatalogTest extends TestCase
         $print_provider = $print_providers[0];
         $this->assertInstanceOf(PrintProvider::class, $print_provider);
         $print_provider_variants = $this->printify_catalog->print_provider_variants(self::CATALOG_ITEM_ID, $print_provider->id);
-        $this->assertTrue(is_array($print_provider_variants));
+        $this->assertInstanceOf(Collection::class, $print_provider_variants);
         $this->assertTrue((count($print_provider_variants) > 0));
         $variant = $print_provider_variants[0];
         $this->assertInstanceOf(Variant::class, $variant);
@@ -102,7 +103,7 @@ class CatalogTest extends TestCase
     public function testAllPrintProviders()
     {
         $print_providers = $this->printify_catalog->all_print_providers();
-        $this->assertTrue(is_array($print_providers));
+        $this->assertInstanceOf(Collection::class, $print_providers);
         $this->assertTrue((count($print_providers) > 0));
         $provider = $print_providers[0];
         $this->assertInstanceOf(PrintProvider::class, $provider);

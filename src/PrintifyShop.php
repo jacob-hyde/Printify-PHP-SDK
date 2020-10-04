@@ -7,7 +7,7 @@ class PrintifyShop extends PrintifyBaseEndpoint
 {
     protected $_structure = Shop::class;
 
-    public function all(array $query_options = []): array
+    public function all(array $query_options = []): Collection
     {
         $items = $this->_api_client->doRequest('shops.json');
         return $this->collectStructure($items);

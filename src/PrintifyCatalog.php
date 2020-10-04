@@ -10,7 +10,7 @@ class PrintifyCatalog extends PrintifyBaseEndpoint
 {
     protected $_structure = Blueprint::class;
 
-    public function all(array $query_options = []): array
+    public function all(array $query_options = []): Collection
     {
         $items = $this->_api_client->doRequest('catalog/blueprints.json');
         return $this->collectStructure($items);
@@ -34,7 +34,7 @@ class PrintifyCatalog extends PrintifyBaseEndpoint
      * @param int $blueprint_id
      * @return array
      */
-    public function print_providers($blueprint_id): array
+    public function print_providers($blueprint_id): Collection
     {
         $items = $this->_api_client->doRequest('catalog/blueprints/'.$blueprint_id.'/print_providers.json');
         return $this->collectStructure($items, PrintProvider::class);
@@ -47,7 +47,7 @@ class PrintifyCatalog extends PrintifyBaseEndpoint
      * @param int $print_provider_id
      * @return array
      */
-    public function print_provider_variants($blueprint_id, $print_provider_id): array
+    public function print_provider_variants($blueprint_id, $print_provider_id): Collection
     {
         $items = $this->_api_client->doRequest('catalog/blueprints/'.$blueprint_id.'/print_providers/'.$print_provider_id.'/variants.json');
         return $this->collectStructure($items['variants'], Variant::class);
@@ -71,7 +71,7 @@ class PrintifyCatalog extends PrintifyBaseEndpoint
      *
      * @return array
      */
-    public function all_print_providers(): array
+    public function all_print_providers(): Collection
     {
         $items = $this->_api_client->doRequest('catalog/print_providers.json');
         return $this->collectStructure($items, PrintProvider::class);
