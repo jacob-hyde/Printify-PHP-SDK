@@ -3,7 +3,8 @@
 Basic PHP wrapper for working with Printify API.
 API endpoint documentation can be found here: <https://developers.printify.com/>
 
-**This is a work in progress**, Webhooks and events are to come soon.
+**This is a work in progress**
+Webhooks and events are to come soon.
 
 ## Installation
 ----
