@@ -37,8 +37,8 @@ Endpoints that need a shop ID:
 
 ### Endpoints
 ----
-* [Shops](https://github.com/jacob-hyde/Printify-PHP-SDK/docs/shops.md)
-* [Catalog](https://github.com/jacob-hyde/Printify-PHP-SDK/docs/catalog.md)
-* [Products](https://github.com/jacob-hyde/Printify-PHP-SDK/docs/products.md)
-* [Orders](https://github.com/jacob-hyde/Printify-PHP-SDK/docs/orders.md)
-* [Uploads](https://github.com/jacob-hyde/Printify-PHP-SDK/docs/uploads.md)
+* [Shops](docs/shops.md)
+* [Catalog](docs/catalog.md)
+* [Products](docs/products.md)
+* [Orders](orders.md)
+* [Uploads](docs/uploads.md)
