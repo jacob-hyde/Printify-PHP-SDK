@@ -11,7 +11,7 @@ class Blueprint extends BaseStructure
         $this->attributes = [
             'id' => $attribute->id,
             'title' => $attribute->title,
-            'description' => $attribute->description,
+            'description' => isset($attribute->description) ? $attribute->description : null,
             'brand' => $attribute->brand,
             'model' => $attribute->model,
             'images' => $attribute->images

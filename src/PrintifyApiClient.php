@@ -59,8 +59,8 @@ class PrintifyApiClient
             throw new Exception($error_msg);
         }
         $this->last_request = $this->response;
-        $this->response = json_decode($response->getBody()->getContents());
-        return (array) $this->response;
+        $this->response = json_decode($response->getBody()->getContents(), true);
+        return $this->response;
     }
 
     public function doMultipleGetRequests(array $urls): array

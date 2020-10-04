@@ -14,10 +14,13 @@ abstract class BaseStructure
     /**
      * Construct
      *
-     * @param object $attributes - Fillable attributes
+     * @param object|array $attributes - Fillable attributes
      */
-    public function __construct(object $attributes = null)
+    public function __construct($attributes = null)
     {
+        if (is_array($attributes)) {
+            $attributes = (object) $attributes;
+        }
         if ($attributes) {
             $this->fill($attributes);
         }
@@ -39,7 +42,7 @@ abstract class BaseStructure
      */
     public function toArray(): array
     {
-        return (array) $this->attributes;
+        return json_decode(json_encode($this->attributes), true);
     }
 
     /**

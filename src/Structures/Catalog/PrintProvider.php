@@ -9,9 +9,9 @@ class PrintProvider extends BaseStructure
     public function fill(object $attribute): void
     {
         $this->attributes = [
-            'id' => $attribute->id,
+            'id' => (int) $attribute->id,
             'title' => $attribute->title,
-            'location' => $attribute->location
+            'location' => isset($attribute->location) ? $attribute->location : null
         ];
         if (isset($attribute->blueprints)) {
             $this->attributes['blueprints'] = $this->collectStructure($attribute->blueprints, Blueprint::class);
