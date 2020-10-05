@@ -38,7 +38,7 @@ class PrintifyApiClient
      *
      * @param string $uri - The URI to hit
      * @param string $method - The HTTP method
-     * @param array $params - Any body params
+     * @param array $json - Any body params
      * @return object - The response
      */
     public function doRequest(string $uri, string $method = 'GET', array $json = []): ?array
