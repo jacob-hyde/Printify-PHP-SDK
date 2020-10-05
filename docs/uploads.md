@@ -11,7 +11,9 @@ $printify_image = new PrintifyImage($printify_api, <Shop ID>);
 ----
 
 * Retrieve a list of uploaded images
+  <br />
   `$all_images = $printify_images->all($query_options)`
+  <br />
   **Parameters**
   (optional) 
   ```
