@@ -3,11 +3,8 @@
 Basic PHP wrapper for working with Printify API.
 API endpoint documentation can be found here: <https://developers.printify.com/>
 
-**This is a work in progress**, Webhooks and events are to come soon.
-
 ## Installation
 ----
-Using composer, run `composer require jacob-hyde/printify`
 Check out **example** and **test** directories for more specific usage examples.
 
 ### Basic Usage
@@ -34,6 +31,7 @@ Endpoints that need a shop ID:
 * Products
 * Orders
 * Uploads
+* Webhooks
 
 ### Endpoints
 ----
@@ -42,3 +40,4 @@ Endpoints that need a shop ID:
 * [Products](docs/products.md)
 * [Orders](orders.md)
 * [Uploads](docs/uploads.md)
+* [Webhooks](docs/webhooks.md)

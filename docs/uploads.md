@@ -44,7 +44,7 @@ $printify_image = new PrintifyImage($printify_api, <Shop ID>);
         }
   ```
 * Retrieve an uploaded image by id
-  `$image = $printify_images->find('5e16d66791287a0006e522b2')`
+  `$image = $printify_images->find($id)`
   Output:
   ```
     {
@@ -57,4 +57,24 @@ $printify_image = new PrintifyImage($printify_api, <Shop ID>);
         "preview_url": "https://example.com/image-storage/uuid1",
         "upload_time": "2020-01-09 07:29:43"
     }
+  ```
+* Upload an image
+  `$image = $printify_images->create($file_name, $contents, $is_base64)`
+  `$contents` Can be either a image URL or a base64 encoded image
+  **Parameters**
+  (required)
+  ```
+  $file_name = 'test.png'
+  $contents = '<URL>|<Base64 Image>'
+  ```
+  (requied if base64 contents)
+  ```
+  $is_base64 = true
+  ```
+* Archive an uploaded image
+  `$printify_images->archive($id)`
+  **Parameters**
+  (required)
+  ```
+  $id = '<Image ID>'
   ```
