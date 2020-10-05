@@ -103,7 +103,7 @@ class PrintifyProducts extends PrintifyBaseEndpoint
                 'tags' => true
             ];
         }
-        $this->_api_client->doRequest('shops/'.$this->shop_id.'/products/'.$product_id.'.json', 'POST', $publishable_items);
+        $this->_api_client->doRequest('shops/'.$this->shop_id.'/products/'.$product_id.'/publish.json', 'POST', $publishable_items);
         return $this->_api_client->status_code === 200;
     }
 

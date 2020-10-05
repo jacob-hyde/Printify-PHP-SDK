@@ -41,9 +41,9 @@ class PrintifyApiClient
      * @param array $params - Any body params
      * @return object - The response
      */
-    public function doRequest(string $uri, string $method = 'GET', array $params = [], array $json = []): ?array
+    public function doRequest(string $uri, string $method = 'GET', array $json = []): ?array
     {
-        $options = $this->formatRequest($uri, $method, $params, $json);
+        $options = $this->formatRequest($uri, $method, $json);
         try {
             $response = $this->client->request($method, $uri, $options);
         } catch (RequestException | ClientException $e) {
@@ -63,17 +63,15 @@ class PrintifyApiClient
         return $this->response;
     }
 
-    public function formatRequest(string $uri, string $method, array $params = [], array $json = [])
+    public function formatRequest(string $uri, string $method, array $json = [])
     {
         $options = [];
-        if ($method === 'GET' && !empty($params)) {
+        if ($method === 'GET' && !empty($json)) {
             $uri .= '?';
-            foreach ($params as $key => $param) {
+            foreach ($json as $key => $param) {
                 $uri .= $key.'='.$param.'&';
             }
             $uri = substr($uri, 0, strlen($uri) - 1);
-        } else if (!empty($params)) {
-            $options['form_params'] = $params;
         } else if (!empty($json)) {
             $options['json'] = $json;
         }
