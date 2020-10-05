@@ -15,6 +15,7 @@ $printify_image = new PrintifyImage($printify_api, <Shop ID>);
   `$all_images = $printify_images->all($query_options)`
   <br />
   **Parameters**
+  <br />
   (optional) 
   ```
   $query_options = [
@@ -46,7 +47,9 @@ $printify_image = new PrintifyImage($printify_api, <Shop ID>);
         }
   ```
 * Retrieve an uploaded image by id
+  <br />
   `$image = $printify_images->find($id)`
+  <br />
   Output:
   ```
     {
@@ -61,9 +64,13 @@ $printify_image = new PrintifyImage($printify_api, <Shop ID>);
     }
   ```
 * Upload an image
+  <br />
   `$image = $printify_images->create($file_name, $contents, $is_base64)`
+  <br />
   `$contents` Can be either a image URL or a base64 encoded image
+  <br />
   **Parameters**
+  <br />
   (required)
   ```
   $file_name = 'test.png'
@@ -74,8 +81,11 @@ $printify_image = new PrintifyImage($printify_api, <Shop ID>);
   $is_base64 = true
   ```
 * Archive an uploaded image
+  <br />
   `$printify_images->archive($id)`
+  <br />
   **Parameters**
+  <br />
   (required)
   ```
   $id = '<Image ID>'
