@@ -5,6 +5,8 @@ API endpoint documentation can be found here: <https://developers.printify.com/>
 
 ## Installation
 ----
+`composer required jacob-hyde/printify`
+
 Check out **example** and **test** directories for more specific usage examples.
 
 ### Basic Usage
