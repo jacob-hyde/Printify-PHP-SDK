@@ -23,6 +23,9 @@ class Product extends BaseStructure
             'shop_id' => (int) $attribute->shop_id,
             'print_provider_id' => (int) $attribute->print_provider_id,
             'print_areas' => $attribute->print_areas,
+            'print_details' => isset($attribute->print_details) ? $attribute->print_details : null,
+            'external' => isset($attribute->external) ? $attribute->external : null,
+            'is_locked' => isset($attribute->is_locked) ? $attribute->is_locked : null,
             'sales_channel_properties' => $attribute->sales_channel_properties
         ];
     }
