@@ -71,7 +71,7 @@ class PrintifyApiClient
                     unset($query_parts['page']);
                 }
                 $query_parts['page'] = $i;
-                $url = $url_parsed['scheme'].$url_parsed['host'].$url_parsed['path'].self::formatQuery($query_parts);
+                $url = $url_parsed['path'].self::formatQuery($query_parts);
                 $requests[] = new Request('GET', $url);
             }
             $responses = Pool::batch($this->client, $requests, [
