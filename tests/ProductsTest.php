@@ -63,6 +63,12 @@ class ProductsTest extends TestCase
         $this->assertCount(1, $products);
     }
 
+    // public function testProductPaginateAll()
+    // {
+    //     //TODO create 2 products
+    //     $products = $this->printify_products->all(['limit' => 1, 'paginate' => true]);
+    // }
+
     public function testGetProduct()
     {
         $product = $this->printify_products->find(self::PRODUCT_ID);

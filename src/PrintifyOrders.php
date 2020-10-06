@@ -24,6 +24,9 @@ class PrintifyOrders extends PrintifyBaseEndpoint
         if (empty($query_options) || !array_key_exists('limit', $query_options)) {
             $query_options['limit'] = 10;
         }
+        if (isset($query_options['paginate']) && $query_options['paginate']) {
+            $this->_api_client->paginate = true;
+        }
         $query = PrintifyApiClient::formatQuery($query_options);
         $items = $this->_api_client->doRequest('shops/'.$this->shop_id.'/orders.json'.$query);
         return $this->collectStructure($items['data']);

@@ -16,6 +16,7 @@ class PrintifyApiClient
     public $response = null;
     public $last_request = null;
     public $status_code = null;
+    public $paginate = false;
 
     public function __construct(string $token = null)
     {
@@ -60,6 +61,27 @@ class PrintifyApiClient
         }
         $this->last_request = $this->response;
         $this->response = json_decode($response->getBody()->getContents(), true);
+        if ($this->paginate && isset($this->response['last_page']) && $this->response['last_page'] > 1) {
+            //generate links
+            $requests = [];
+            for ($i = $this->response['current_page']; $i <= $this->response['last_page']; $i++) {
+                $url_parsed = parse_url($uri);
+                parse_str($url_parsed['query'], $query_parts);
+                if (isset($query_parts['page'])) {
+                    unset($query_parts['page']);
+                }
+                $query_parts['page'] = $i;
+                $url = $url_parsed['scheme'].$url_parsed['host'].$url_parsed['path'].self::formatQuery($query_parts);
+                $requests[] = new Request('GET', $url);
+            }
+            $responses = Pool::batch($this->client, $requests, [
+                'concurrency' => 15,
+            ]);
+            $this->response = $this->response['data'];
+            foreach ($responses as $response) {
+                $this->response = array_merge($this->response, json_decode($response->getBody()->getContents(), true)['data']);
+            }
+        }
         return $this->response;
     }
 
@@ -93,6 +115,9 @@ class PrintifyApiClient
     {
         $query = '?';
         foreach ($query_options as $key => $value) {
+            if ($key === 'paginate') {
+                continue;
+            }
             $query .= $key.'='.$value.'&';
         }
         $query = substr($query, 0, strlen($query) - 1);

@@ -12,6 +12,9 @@ class PrintifyImage extends PrintifyBaseEndpoint
         if (empty($query_options) || !array_key_exists('limit', $query_options)) {
             $query_options['limit'] = 100;
         }
+        if (isset($query_options['paginate']) && $query_options['paginate']) {
+            $this->_api_client->paginate = true;
+        }
         $query = PrintifyApiClient::formatQuery($query_options);
         $items = $this->_api_client->doRequest('uploads.json'.$query);
         return $this->collectStructure($items['data']);
