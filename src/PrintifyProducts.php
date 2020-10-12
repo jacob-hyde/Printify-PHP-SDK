@@ -30,7 +30,7 @@ class PrintifyProducts extends PrintifyBaseEndpoint
         $query = PrintifyApiClient::formatQuery($query_options);
         $uri = 'shops/'.$this->shop_id.'/products.json';
         $items = $this->_api_client->doRequest($uri.$query);
-        return $this->collectStructure($items);
+        return $this->collectStructure($items['data']);
     }
 
     /**

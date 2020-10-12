@@ -81,6 +81,7 @@ class PrintifyApiClient
             foreach ($responses as $response) {
                 $this->response = array_merge($this->response, json_decode($response->getBody()->getContents(), true)['data']);
             }
+            $this->response = ['data' => $this->response];
         }
         return $this->response;
     }
