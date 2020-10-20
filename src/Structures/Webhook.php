@@ -11,7 +11,7 @@ class Webhook extends BaseStructure
             'topic' => $attribute->topic,
             'url' => $attribute->url,
             'shop_id' => $attribute->shop_id,
-            'secret' => $attribute->secret
+            'secret' => isset($attribute->secret) ? $attribute->secret : null
         ];
     }
 }
