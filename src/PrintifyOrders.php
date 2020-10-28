@@ -64,7 +64,7 @@ class PrintifyOrders extends PrintifyBaseEndpoint
      */
     public function send_to_production($id): Order
     {
-        $item = $this->_api_client->doRequest('shops/'.$this->shop_id.'/orders/'.$id.'/send_to_production.json');
+        $item = $this->_api_client->doRequest('shops/'.$this->shop_id.'/orders/'.$id.'/send_to_production.json', 'POST');
         return new Order($item);
     }
 
