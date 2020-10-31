@@ -101,9 +101,16 @@ class PrintifyApiClient
         return $options;
     }
 
-    public static function exchangeCodeForToken(string $app_id, string $code) {
+    public static function exchangeCodeForToken(string $app_id, string $code)
+    {
         $client = new self();
         return $client->doRequest('app/oauth/tokens?app_id='.$app_id.'&code='.$code, 'POST');
+    }
+
+    public static function updateAccessToken(string $app_id, string $refresh_token)
+    {
+        $client = new self();
+        return $client->doRequest('app/oauth/tokens/refresh?app_id='.$app_id.'&refresh_token='.$refresh_token, 'POST');
     }
 
     /**
