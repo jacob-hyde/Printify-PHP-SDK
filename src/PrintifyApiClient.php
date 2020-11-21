@@ -48,7 +48,18 @@ class PrintifyApiClient
         try {
             $response = $this->client->request($method, $uri, $options);
         } catch (RequestException | ClientException $e) {
-            throw new Exception($e->getMessage(), $e->getCode());
+            $response = json_decode($e->getResponse()->getBody()->getContents());
+            $message = optional($response)->message;
+
+            if (property_exists($response, "error")) {
+                $message = $response->error;
+            }
+
+            if (property_exists($response, "errors")) {
+                $message = $response->errors->reason;
+            }
+
+            throw new Exception($message, $e->getCode());
         }
         $this->status_code = $response->getStatusCode();
         if ($this->status_code !== 200 && $this->status_code !== 201) {
